@@ -42,9 +42,10 @@ script:
 after_script:
   - |
     if [[ $TRAVIS_GO_VERSION == 1.15* ]]; then
+      sed -i "s|$(go list -m)/||g" c.out # https://github.com/codeclimate/test-reporter/issues/378
       cc-test-reporter after-build -t gocov -p $(go list -m) --exit-code $TRAVIS_TEST_RESULT
     fi
 
 notifications:
   slack:
-    secure: VHWCBgcxc9BejOM9pSTqAyXzZN6DEW/UzJKGkNX+lWL1wREIDmJ7iFKM1ZUfTwU6j5WtOE4ruJlfpUlmmlzicqTZUBIkGCJH6LoX9kwP+6IKBD/aCFuGwRuptKKU0I8pLV6Jvs2m2WQBlKQrfSX9IIM4zqb0M+ST067huwRscJP/4bJJ2aPg+dQiGeR3VHLit/izMRzk/IjnT093i3qGlXDhdRZrxnlqd5flmSlnU5sBTfRr9wHcMdrxIXK3smhay/w8M7XeuIgpv9mUjizmg5e+bQkm4e8AZZxYasvUQAdLWWylcwMk9xPHYy9QGKRFTSl1weon6rRrXWVXP1b9PpR8PYeg1qPvV0k+QNKokDdveqzd2N6ZAilRqAMNVYYYnI1fgLTySfBdIXKMwZAM8OnQk0BBBfyPp+FkoB/zewC6pFy54w7gM2pjefdV3RWjOsc6ux/W6Ro2msZufDW1OzJU4Yj4uzWCtZdsjjkGcA2fB9cDQWlhhmkYVpc7tDfhQ2GFgRmTvuvCvZP2jfUbHcMTgK1CW0+zbX5gsGorWCrMvHL6boV3iRydndOvCFKBUFdDDPvKBjbRIJRuoNprpSmhjWwRYZdUUD+HU/S64vm4mKiWoLhP3hUeDHKSg26F7GomvEGoVz2MCkaqXteRUi9tAhNJIjy88a/l354IMWg=
+    secure: ZoMJIj/rPWxkpN4KnBd+9mtKkrbh/IqDf//8yGYvEysIKa2zrPTTOuuAqCMzvSgu6BHFxnkqI3RaVGOgFalGujtHnLdMf+dx1mPA0QAuZPkNOybTJrnHiXehymF1ObAHj0TdCQea0WuDfym16ykAUWps3upqVQ8qTPa8ze7kiARYS8OcNyiVDIv98Ndnct/Sq8VqJFMAuQ+6f/CULgGDJGqR6hoYeacc4JzsoTSL5zv3hu5hNEFlc4XZ7P+OYAJuuh31qIoWzpwf5ApbJx/tX7XoZFPJz6/mmZOEm8DnLpJvX3QA1pGrccZIgHPfOhKKCzR4IFYsyvLubKwBCCsyUe6n/uTaYif5NdX2ZnRhjVceJE6mq+dRNnLBSw1zBBRKG5XXotlNEKAGwl7csauHOutg7eWQJOaMTJ0gFFhVGGHCwWm/fRmSNgHJ6SiIFE+apMac0Z936nKGebwE8Eow4sAYQ0fRwyfy2x3EJFQ/sVEwRhTrrGdPlSyMkcl8VOJCu57id14xK3YZ5nD3DKrlG9TkWt+GIXD/fWcjtDgQ3VVv6taHIjXG3rz/syH8H8k40otoOTKjRHbji7aBdN+Bu8HqDcxOwU5OmI0NRMcjkC8J786CGZRtwqD17UObtbO7XyVno66di8SwSrkAe6FYSLuNEFwrGXPcuB6jltm7l+A=
